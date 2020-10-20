@@ -7,8 +7,11 @@ public class Question_Easy_206 {
         head.next = next;
 
         Solution solution = new Solution();
-        solution.print(head);
-        head = solution.reverseList(head);
+//        solution.print(head);
+//        head = solution.reverseList(head);
+//        solution.print(head);
+
+        head = solution.reverseListRecursionReal(head);
         solution.print(head);
     }
 
@@ -37,7 +40,18 @@ public class Question_Easy_206 {
             return prev;
         }
 
-        // 递归版本，时间复杂度O(n),空间复杂度O(1)
+        public ListNode reverseListRecursionReal(ListNode head) {
+            // 递归终止的条件，下一节点为空，返回的是反转后的头
+            if(head == null || head.next == null){
+                return head;
+            }
+            ListNode cur = reverseListRecursionReal(head.next);
+            head.next.next = head;
+            head.next = null;
+            return cur;
+        }
+
+        // 尾递归版本，时间复杂度O(n),空间复杂度O(1)
         public ListNode reverseListRecursion(ListNode head) {
             if(head == null){
                 return head;

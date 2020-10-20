@@ -11,3 +11,19 @@ https://github.com/shuzijun/leetcode-editor/blob/master/README_ZH.md
 4. 遍历、排序
 5. 分治
 6. 动态规划
+
+## 2.链表
+递归的模板：
+```
+public ListNode reverseList(参数0) {
+    if (终止条件)
+        return;
+
+    逻辑处理（可能有，也可能没有，具体问题具体分析）
+
+    //递归调用
+    ListNode reverse = reverseList(参数1);
+
+    逻辑处理（可能有，也可能没有，具体问题具体分析）
+}
+```
