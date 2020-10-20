@@ -12,7 +12,7 @@ public class Question_Easy_206 {
 //        solution.print(head);
 
         head = solution.reverseListRecursionReal(head);
-        solution.print(head);
+        ListNode.print(head);
     }
 
     public static class Solution{
@@ -70,26 +70,5 @@ public class Question_Easy_206 {
             prev = cur;
             return reverse(prev, next);
         }
-
-        public void print(ListNode head){
-            if (head == null){
-                System.out.println("null");
-                return;
-            }
-            StringBuilder sb = new StringBuilder();
-            ListNode p = head;
-            while (p != null){
-                sb.append(p.val + "->");
-                p = p.next;
-            }
-            sb.append("null");
-            System.out.println(sb.toString());
-        }
-    }
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
     }
 }
