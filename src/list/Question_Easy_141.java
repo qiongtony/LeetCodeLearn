@@ -1,4 +1,4 @@
-package stack;
+package list;
 
 public class Question_Easy_141 {
     public static void main(String[] args){

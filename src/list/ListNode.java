@@ -1,4 +1,4 @@
-package stack;
+package list;
 
 public class ListNode {
     int val;
