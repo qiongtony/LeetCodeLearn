@@ -1,8 +1,9 @@
 package stack;
 
+import java.util.HashMap;
 import java.util.Stack;
 
-public class QuestionEasy_682 {
+public class Question_Easy_682 {
     class Solution {
         // 时间复杂度：O(N)；
         // 空间复杂度：O(N)
