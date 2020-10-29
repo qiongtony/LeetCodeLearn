@@ -1,5 +1,7 @@
 package deque;
 
+import java.util.HashMap;
+
 public class Question_Hard_239 {
     class Solution {
         /**
