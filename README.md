@@ -7,10 +7,12 @@ https://github.com/shuzijun/leetcode-editor/blob/master/README_ZH.md
 目录：
 1. Array数组
 2. Linked List链表
-3. Tree数
-4. 遍历、排序
-5. 分治
-6. 动态规划
+3. 栈
+4. 队列
+5. Tree数
+6. 遍历、排序
+7. 分治
+8. 动态规划
 
 ## 2.链表
 递归的模板：
@@ -41,5 +43,10 @@ public ListNode reverseList(参数0) {
     6.4 删除倒数第n个节点（19）
     6.5 求链表中间节点（876）
     
-    3.栈
-    leetcode题集：20、155、232、844、224、682、496
+## 3.栈
+leetcode题集：20、155、232、844、224、682、496
+
+## 4.队列
+问题1：队列的使用场景
+
+问题2：如何无锁实现并发队列
