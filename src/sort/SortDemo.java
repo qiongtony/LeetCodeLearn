@@ -8,6 +8,11 @@ public class SortDemo {
         sort(new InsertionSort());
         System.out.println("选择排序：");
         sort(new SelectionSort());
+        System.out.println("归并排序：");
+        sort(new MergeSort());
+
+        System.out.println("快速排序：");
+        sort(new QuickSort());
     }
 
     public static void sort(Sort sort){
