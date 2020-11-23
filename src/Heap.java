@@ -10,7 +10,6 @@ public class Heap {
     /**
      * 往堆中插入元素
      * @param a
-     * @param index
      * @param value
      */
     public void insert(int[] a, int value){
@@ -54,5 +53,45 @@ public class Heap {
         int tmp = a[aIndex];
         a[aIndex] = a[bIndex];
         a[bIndex] = tmp;
+    }
+
+    /**
+     * 堆排序：
+     * 1、建堆；
+     * 2、排序；
+     */
+    public void buildHeap(int []a, int n){
+        for (int i = n / 2; i >= 1; --i){
+            heapify(a, n, i);
+        }
+    }
+
+    public void heapify(int[] a, int count, int startIndex){
+        int index = startIndex;
+        int maxPos = startIndex;
+        while (index <= count){
+            if (index * 2 <= count && a[index * 2] > a[maxPos]) maxPos = index * 2;
+            if ((index * 2 + 1) <= count && a[index * 2 + 1] > a[maxPos]) maxPos = index * 2 + 1;
+            if (maxPos != index){
+                swap(a, maxPos, index);
+                index = maxPos;
+            }else{
+                break;
+            }
+        }
+    }
+
+    /**
+     * 堆排序
+     * @param a
+     * @param n
+     */
+    public void heapSort(int[] a, int n){
+        buildHeap(a, n);
+        for(int k = n; k > 1;){
+            swap(a, 1, k);
+            --k;
+            heapify(a, k, 1);
+        }
     }
 }
