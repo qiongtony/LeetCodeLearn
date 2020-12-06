@@ -3,13 +3,13 @@ package tree;
 public class Tree {
     public Tree left;
     public Tree right;
-    private int value;
+    public int val;
 
     public Tree(int value) {
-        this.value = value;
+        this.val = value;
     }
 
-    public int getValue() {
-        return value;
+    public int getVal() {
+        return val;
     }
 }
