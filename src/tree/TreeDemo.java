@@ -4,7 +4,114 @@ import java.util.*;
 
 public class TreeDemo {
     public static void main(String[]args){
+        System.out.println(" 3/2 = " + (calculate("3/2")));
+    }
 
+    /**
+     * 计算器实现的拆解：
+     * 1、根据字符串返回数字：如“123”,返回指123
+     * 2、运算符优先级：括号>"*"/"/"> +/-，高优先级要先算
+     * 3、将运算符的与上一个数字当作一个整体：如“1+2*3-4”，拆分为"+1"、“+2”、“*3”、“-4”，经过优先级排序后的执行顺序是：“*3”、“+2”、”+1“、”-4“
+     * 4、特殊的处理：遇到非数字且非空格或者字符串到最好一个，需要处理这个数值，以免单个数或者最后是空格的情况，如”3“、”1+2 “
+     * 5、括号的处理，左右括号包住的相当于又是表达式，所以可以先将表达式求值，然后按普通的运算符去处理，比较麻烦的是要记下每次包住的范围而Java没有引用需要创个数组或Integer来记录，下次从后面开始处理，
+     * @param s
+     * @return
+     */
+    public static int calculate(String s) {
+        char sign = '+';
+        int num = 0;
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < s.length();i++){
+            // 处理数字，如123 = ((1) * 10 + 2) * 10 + 3
+            if (isDigit(s.charAt(i))){
+                num = num * 10 + (s.charAt(i) - '0');
+            }
+            // 空格要在这里处理，不然可能漏掉最后一个数，如"3 + 2 "这种坑爹的写法
+            if ((!isDigit(s.charAt(i)) && s.charAt(i) != ' ') | i == (s.length() - 1)){
+                // 求出上一个的值：+num or -num，然后清空数字，记录下当前的操作符供下次使用
+                switch (sign){
+                    case '+':
+                        stack.push(num);
+                        break;
+                    case '-':
+                        stack.push(-num);
+                        break;
+                    case '*':
+                        int pre = stack.pop();
+                        stack.push(num * pre);
+                        break;
+                    case '/':
+                        int pre2 = stack.pop();
+                        stack.push(pre2 / num);
+                        break;
+                }
+                sign = s.charAt(i);
+                num = 0;
+            }
+        }
+        int result = 0;
+        while (!stack.isEmpty()){
+            result += stack.pop();
+        }
+        return result;
+    }
+
+    /**
+     * 递归求解带括号的表达式
+     * @param s
+     * @param index
+     * @return
+     */
+    private int dfs(String s, int[] index){
+        char sign = '+';
+        int num = 0;
+        Stack<Integer> stack = new Stack<>();
+        for (; index[0] < s.length();index[0]++){
+            char ch = s.charAt(index[0]);
+            if (ch == '('){
+                index[0]++;
+                num = dfs(s, index);
+            }
+            // 处理数字，如123 = ((1) * 10 + 2) * 10 + 3
+            if (isDigit(ch)){
+                num = num * 10 + (ch - '0');
+            }
+            // 1+(2+4)-3 +1 +6 -3 1+(2+3)
+            // 空格要在这里处理，不然可能漏掉最后一个数，如"3 + 2 "这种坑爹的写法
+            if ((!isDigit(ch) && ch != ' ') || index[0] == (s.length() - 1)){
+                // 求出上一个的值：+num or -num，然后清空数字，记录下当前的操作符供下次使用
+                switch (sign){
+                    case '+':
+                        stack.push(num);
+                        break;
+                    case '-':
+                        stack.push(-num);
+                        break;
+                    case '*':
+                        int pre = stack.pop();
+                        stack.push(num * pre);
+                        break;
+                    case '/':
+                        int pre2 = stack.pop();
+                        stack.push(pre2 / num);
+                        break;
+                }
+                sign = ch;
+                num = 0;
+            }
+            if (ch == ')'){
+                break;
+            }
+        }
+        int result = 0;
+        while (!stack.isEmpty()){
+            result += stack.pop();
+        }
+        return result;
+    }
+
+    private static boolean isDigit(char c){
+        return c >= '0' && c <= '9';
     }
 
 
