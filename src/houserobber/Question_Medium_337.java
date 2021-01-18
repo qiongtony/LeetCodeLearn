@@ -1,4 +1,4 @@
-package houserobbing;
+package houserobber;
 
 import tree.TreeNode;
 
