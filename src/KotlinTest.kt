@@ -1,7 +1,6 @@
-fun main() {
-    val str : String? = "     "
-    println("$str isNonOrBlank = ${str.isNullOrBlank()}")
-}
+//fun main() {
+//    val str : String? = "     "
+//}
 
 class KotlinTest {
 
