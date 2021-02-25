@@ -33,17 +33,18 @@ public class CopyDemo {
         child.age = 30;
         father.child = child;
 
+        Father fatherClone = null;
         try {
-            Father fatherClone = (Father) father.clone();
-            System.out.println("father == fatherClone ? " + (father == fatherClone));
+            fatherClone = (Father) father.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("father == fatherClone ? " + (father == fatherClone));
             System.out.println("father.hash = " + father.hashCode() + " fatherClone.hash = " + fatherClone.hashCode());
             System.out.println("father.name = " + father.name + " fatherClone.name = " + fatherClone.name);
             System.out.println("child == fatherClone.child ? " + (child == fatherClone.child));
             System.out.println("child.hash = " + child.hashCode() + " fatherClone.child.hash = " + fatherClone.child.hashCode());
 
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
 
     }
 
